@@ -1,0 +1,6 @@
+framework module BCPlayer {
+  umbrella header "BCPlayer-umbrella.h"
+
+  export *
+  module * { export * }
+}

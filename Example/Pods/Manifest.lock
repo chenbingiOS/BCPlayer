@@ -1,0 +1,16 @@
+PODS:
+  - BCPlayer (0.1.0)
+
+DEPENDENCIES:
+  - BCPlayer (from `../`)
+
+EXTERNAL SOURCES:
+  BCPlayer:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BCPlayer: e056b39a0116e8866effa89979c83df4427e1817
+
+PODFILE CHECKSUM: 4dc5288a07f2a62f1fe183274ea382249a4d303f
+
+COCOAPODS: 1.10.0
