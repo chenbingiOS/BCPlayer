@@ -23,7 +23,11 @@ class BasicVC: UIViewController {
         
         playerView.play(for: URL(string: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")!)
         
-        playerView.stateDidChanged = { state in
+        playerView.stateDidChanged = { [weak self] state in
+            guard let self = self else {
+                return
+            }
+            
             switch state {
             case .none:
                 self.stateLabel.text = "none"
