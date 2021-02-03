@@ -10,13 +10,35 @@ import UIKit
 import BCPlayer
 
 class BasicVC: UIViewController {
+    
+    @IBOutlet weak var playerView: VideoPlayerView!
+    @IBOutlet weak var stateLabel: UILabel!
+    
+    deinit {
+        print("BasicVC 释放")
+    }
+    
     override func viewDidLoad() {
         title = "基础"
         
-        let playerView = VideoPlayerView()
-        playerView.frame(forAlignmentRect: CGRect(x: 0, y: 100, width: 300, height: 200))
-        self.view.addSubview(playerView)
+        playerView.play(for: URL(string: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")!)
         
-//        playerView.sta
+        playerView.stateDidChanged = { state in
+            switch state {
+            case .none:
+                self.stateLabel.text = "none"
+            case .loading:
+                self.stateLabel.text = "loading"
+            case .playing:
+                self.stateLabel.text = "playing"
+            case .paused:
+                self.stateLabel.text = "paused"
+            case .error:
+                self.stateLabel.text = "error"
+            }
+        }
+        
+        
+
     }
 }

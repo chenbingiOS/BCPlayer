@@ -12,6 +12,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		7C1E732525CA7571003F807A /* BasicVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C1E732425CA7571003F807A /* BasicVC.xib */; };
 		7C75E33125C94CF400275E31 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C75E33025C94CF400275E31 /* MenuVC.swift */; };
 		7C75E33525C9595A00275E31 /* BasicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C75E33425C9595A00275E31 /* BasicVC.swift */; };
 		DF6CB00C49F0ADD729A71885 /* Pods_BCPlayer_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0C4BFFE265FFA639C6379DC /* Pods_BCPlayer_Example.framework */; };
@@ -28,6 +29,7 @@
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		7C1E732425CA7571003F807A /* BasicVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicVC.xib; sourceTree = "<group>"; };
 		7C75E32B25C94CCF00275E31 /* BCPlayer_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BCPlayer_Example.entitlements; sourceTree = "<group>"; };
 		7C75E33025C94CF400275E31 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		7C75E33425C9595A00275E31 /* BasicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicVC.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				7C75E33025C94CF400275E31 /* MenuVC.swift */,
 				7C75E33425C9595A00275E31 /* BasicVC.swift */,
+				7C1E732425CA7571003F807A /* BasicVC.xib */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -184,6 +187,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				7C1E732525CA7571003F807A /* BasicVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -41,7 +41,7 @@ open class VideoPlayerView: UIView {
         didSet { stateDidChange(state: state, previous: oldValue) }
     }
     /// 播放状态外部回掉，例如从 playing -> paused
-    var stateDidChanged: ((State) -> Void)?
+    public var stateDidChanged: ((State) -> Void)?
     //----------------------------------------
     /// 是否重播
     var isReplay = false
@@ -77,6 +77,17 @@ open class VideoPlayerView: UIView {
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
         setupInit()
+    }
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        guard playerLayer.superlayer == layer else {
+            return
+        }
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        playerLayer.frame = bounds
+        CATransaction.commit()
     }
 }
 
@@ -155,7 +166,6 @@ private extension VideoPlayerView {
                 if self.pausedReason == .waitingKeepUp  {
                     player.play()
                 }
-                break
             case .waitingToPlayAtSpecifiedRate:
                 break
             case .playing:
@@ -167,7 +177,6 @@ private extension VideoPlayerView {
                     // 状态：播放中
                     self.state = .playing
                 }
-                break
             @unknown default:
                 break
             }
@@ -236,7 +245,7 @@ private extension VideoPlayerView {
         player.replaceCurrentItem(with: playerItem)
         
         self.player = player
-        playerURL = url
+        self.playerURL = url
         pausedReason = .waitingKeepUp
         isLoaded = false
         
