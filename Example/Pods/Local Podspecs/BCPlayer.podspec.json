@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "summary": "A short description of BCPlayer.",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/陈冰/BCPlayer",
+  "homepage": "https://github.com/chenbingiOS/BCPlayer",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "陈冰": "cb2@meitu.com"
+    "陈冰": "chenbingios@163.com"
   },
   "source": {
-    "git": "https://github.com/陈冰/BCPlayer.git",
+    "git": "https://github.com/chenbingiOS/BCPlayer.git",
     "tag": "0.1.0"
   },
   "platforms": {

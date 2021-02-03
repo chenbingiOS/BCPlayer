@@ -13,6 +13,10 @@ class BasicVC: UIViewController {
     override func viewDidLoad() {
         title = "基础"
         
-//        let playerView = vid()
+        let playerView = VideoPlayerView()
+        playerView.frame(forAlignmentRect: CGRect(x: 0, y: 100, width: 300, height: 200))
+        self.view.addSubview(playerView)
+        
+//        playerView.sta
     }
 }

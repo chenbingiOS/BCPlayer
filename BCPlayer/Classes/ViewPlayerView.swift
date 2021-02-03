@@ -12,7 +12,7 @@ open class VideoPlayerView: UIView {
     /// 管理播放器视觉输出的对象
     let playerLayer = AVPlayerLayer()
     /// 当前正在播放的网址
-    var playerURL: URL?
+    public private(set) var playerURL: URL?
     /// 播放器
     var player: AVPlayer? {
         get { playerLayer.player }
@@ -36,7 +36,7 @@ open class VideoPlayerView: UIView {
         case error
     }
     /// 获取当前视频状态
-    var state: State = .none {
+    public private(set) var state: State = .none {
         // 计算属性，在state发生变化后，进行后续操作
         didSet { stateDidChange(state: state, previous: oldValue) }
     }
@@ -46,7 +46,7 @@ open class VideoPlayerView: UIView {
     /// 是否重播
     var isReplay = false
     /// 暂停理由
-    enum PausedReason {
+    public enum PausedReason {
         /// 等待资源完成缓冲，默认行为
         case waitingKeepUp
         /// 由用户互动触发的暂停
@@ -56,7 +56,6 @@ open class VideoPlayerView: UIView {
     }
     /// 视频暂停的原因，默认为等待资源缓存
     var pausedReason: PausedReason = .waitingKeepUp
-    
     //----------------------------------------
     // KVO
     /// 播放器层已准备好进行显示
@@ -117,45 +116,8 @@ private extension VideoPlayerView {
         // 播放状态回掉外部
         stateDidChanged?(state)
     }
-}
-
-@objc extension VideoPlayerView {
     
-    /// 播放视频
-    /// - Parameter url: 视频地址
-    func play(for url: URL) {
-        
-        guard playerURL != url else {
-            pausedReason = .waitingKeepUp
-            player?.play()
-            return
-        }
-        
-        // 移除播放器状态监听
-        observe(player: nil)
-        observe(playerItem: nil)
-        
-        let playerItem = AVPlayerItem(url: url)
-        // 指示播放器项在暂停时是否可以使用网络资源来使播放状态保持最新
-        playerItem.canUseNetworkResourcesForLiveStreamingWhilePaused = true
-
-        let player = AVPlayer()
-        // 指示播放器是否应自动延迟播放以最小化停顿
-        player.automaticallyWaitsToMinimizeStalling = false
-        player.replaceCurrentItem(with: playerItem)
-        
-        self.player = player
-        playerURL = url
-        pausedReason = .waitingKeepUp
-        isLoaded = false
-        
-        state = .loading
-        
-        // 添加播放器状态监听
-        observe(player: player)
-        observe(playerItem: playerItem)
-    }
-    
+    /// 播放器监听初始化
     func observe(player: AVPlayer?) {
         guard let player = player else {
             playerLayerReadyForDisplayObservation = nil
@@ -212,6 +174,7 @@ private extension VideoPlayerView {
         }
     }
     
+    /// 播放载体监听初始化
     func observe(playerItem: AVPlayerItem?) {
         guard let playerItem = playerItem else {
             playerBufferingObservation = nil
@@ -243,5 +206,44 @@ private extension VideoPlayerView {
                 }
             }
         }
+    }
+}
+
+/// 对外暴露方法
+@objc extension VideoPlayerView {
+    
+    /// 播放指定网址的视频
+    /// - Parameter url: 可以是本地或远程URL
+    open func play(for url: URL) {
+        
+        guard playerURL != url else {
+            pausedReason = .waitingKeepUp
+            player?.play()
+            return
+        }
+        
+        // 移除播放器状态监听
+        observe(player: nil)
+        observe(playerItem: nil)
+        
+        let playerItem = AVPlayerItem(url: url)
+        // 指示播放器项在暂停时是否可以使用网络资源来使播放状态保持最新
+        playerItem.canUseNetworkResourcesForLiveStreamingWhilePaused = true
+
+        let player = AVPlayer()
+        // 指示播放器是否应自动延迟播放以最小化停顿
+        player.automaticallyWaitsToMinimizeStalling = false
+        player.replaceCurrentItem(with: playerItem)
+        
+        self.player = player
+        playerURL = url
+        pausedReason = .waitingKeepUp
+        isLoaded = false
+        
+        state = .loading
+        
+        // 添加播放器状态监听
+        observe(player: player)
+        observe(playerItem: playerItem)
     }
 }
